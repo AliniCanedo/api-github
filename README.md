@@ -1,24 +1,26 @@
-# README
+## Pré-requisitos
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Certifique-se de ter as seguintes ferramentas instaladas em seu sistema:
 
-Things you may want to cover:
+- Docker: [Link para instalação do Docker](https://docs.docker.com/get-docker/)
+- Docker Compose: [Link para instalação do Docker Compose](https://docs.docker.com/compose/install/)
 
-* Ruby version
+## Como executar o aplicativo
 
-* System dependencies
+1. Clone este repositório em sua máquina local:
 
-* Configuration
+   ```bash
+   git clone https://github.com/AliniCanedo/api-github.git
+   cd api-github
 
-* Database creation
+2. Construa a imagem Docker e inicie os contêineres:
 
-* Database initialization
+    docker-compose up [--build]
 
-* How to run the test suite
+3. O aplicativo estará disponível em http://localhost:3000.
 
-* Services (job queues, cache servers, search engines, etc.)
+4. Para parar o aplicativo, pressione Ctrl + C no terminal e execute o seguinte comando:
 
-* Deployment instructions
+    docker-compose down
 
-* ...
+
