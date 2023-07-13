@@ -1,0 +1,5 @@
+<%= form_with(model: Repository.new, url: repositories_path, method: "post") do |form| %>
+    <%= form.submit "Consultar repositorios" %>
+<% end %>
+
+<%= @repositories.inspect %>
