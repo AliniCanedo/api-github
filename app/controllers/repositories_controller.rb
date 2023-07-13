@@ -32,7 +32,6 @@ class RepositoriesController < ApplicationController
   end
 
   def create_repositories(result)
-    repositories = []
     result[:body]['items'].each do |item|
       data = {
         name: item['name'],
@@ -41,9 +40,7 @@ class RepositoriesController < ApplicationController
         stars: nil,
         forks: item['fork']
       }
-      repository = Repository.create!(data)
-      repositories << repository
+      Repository.create!(data)
     end
-    repositories
   end
 end

@@ -1,8 +1,13 @@
-<h1><%= @repository.name %></h1>
-<p>Forks: <%= @repository.forks %></p>
-<p>Language: <%= @repository.language %></p>
-<p>Favorite: <%= @repository.favorite %></p>
+<div class="container mt-5">
+  <h2>Detalhes do repositório</h2>
+  <div class="card card-body">
+    <p class="text-uppercase"><%= @repository.name %></p>
+      <p>Forks: <%= @repository.forks %></p>
+      <p>Language: <%= @repository.language %></p>
+      <p>proprietária: <%= @repository.owner %></p>
 
-<%= form_with(model: @repository, url: repository_path(@repository), method: "put", id: "repository-form-edit") do |form| %>
-  <%= form.submit(@repository.favorite ? "Remover dos Favoritos" : "Adicionar aos Favoritos") %>
-<% end %>
+      <%= form_with(model: @repository, url: repository_path(@repository), method: "put", id: "repository-form-edit") do |form| %>
+        <%= form.submit(@repository.favorite ? "Remover dos Favoritos" : "Adicionar aos Favoritos", class: "btn btn-#{@repository.favorite ? 'secondary' : 'info'}") %>
+      <% end %>
+  <div>
+</div>

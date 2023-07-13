@@ -1,16 +1,70 @@
 <% if flash[:notice].present? %>
-  <div class="flash-notice">
-    <%= flash[:notice] %>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="flash-notice">
+        <div class="alert alert-success d-flex justify-content-between" role="alert">
+          <%= flash[:notice] %>
+
+          <span class="close">x</span>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
 
-<%= form_with(model: Repository.new, url: repositories_path, method: "post", id: "repository-form") do |form| %>
-  <%= form.submit "Consultar repositórios" %>
-<% end %>
+<section>
+  <div class="container my-5">
+    <%= form_with(model: Repository.new, url: repositories_path, method: "post", id: "repository-form") do |form| %>
+      <div class="row">
+        <h2>Consulta de repositorios do GITHUB</h2>
+        <p>Consulte e favorite seus repositorios do github.</p>
+        <div class="col-lg-12">
+          <%= form.submit "Consultar repositórios", class: "btn btn-info" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
 
-<ul id="repository-list">
-  <% @repositories.each do |repository| %>
-    <li><%= repository.name %></li>
-    <li><%= link_to 'ver detalhes', repository_path(repository) %></li>
-  <% end %>
-</ul>
+<section>
+  <div class="container">
+    <div class="row">
+      <% @repositories.each do |repository| %>
+        <div class="col-3 mb-3">
+          <div class="card" style="width: 18rem;">
+            <%= image_tag 'img.webp', class: "card-img-top border-bottom" %>
+
+            <div class="card-body">
+              <h5 class="card-title"><%= repository.name %></h5>
+              <p class="card-text"><%= repository.language %> - proprietária: <%= repository.owner %> / forks: <%= repository.forks %></p>
+              <p>Favorito: <%= repository.favorite ? 'Sim' : 'Não' %></p>
+              <%= link_to 'ver detalhes', repository_path(repository), class: "btn btn-primary" %>
+            </div>
+          </div>                
+        </div>
+      <% end %>
+    <div>
+  </div>
+</section>
+
+<script>
+  var close = document.querySelector('.close');
+  var alert = document.querySelector('.alert');
+  var timeoutId;
+
+  function hideAlert() {
+    alert.classList.add('d-none');
+  }
+
+  function showAndHideAlert() {
+    alert.classList.remove('d-none');
+    timeoutId = setTimeout(hideAlert, 5000);
+  }
+
+  close.addEventListener('click', function() {
+    clearTimeout(timeoutId);
+    hideAlert();
+  });
+
+  showAndHideAlert();
+</script>
