@@ -1,0 +1,8 @@
+<h1><%= @repository.name %></h1>
+<p>Forks: <%= @repository.forks %></p>
+<p>Language: <%= @repository.language %></p>
+<p>Favorite: <%= @repository.favorite %></p>
+
+<%= form_with(model: @repository, url: repository_path(@repository), method: "put", id: "repository-form-edit") do |form| %>
+  <%= form.submit(@repository.favorite ? "Remover dos Favoritos" : "Adicionar aos Favoritos") %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_122731) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_13_160858) do
   create_table "repositories", force: :cascade do |t|
     t.string "name"
     t.string "owner"
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_122731) do
     t.integer "forks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "favorite", default: false
   end
 
 end

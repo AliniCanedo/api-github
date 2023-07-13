@@ -1,5 +1,16 @@
-<%= form_with(model: Repository.new, url: repositories_path, method: "post") do |form| %>
-    <%= form.submit "Consultar repositorios" %>
+<% if flash[:notice].present? %>
+  <div class="flash-notice">
+    <%= flash[:notice] %>
+  </div>
 <% end %>
 
-<%= @repositories.inspect %>
+<%= form_with(model: Repository.new, url: repositories_path, method: "post", id: "repository-form") do |form| %>
+  <%= form.submit "Consultar repositórios" %>
+<% end %>
+
+<ul id="repository-list">
+  <% @repositories.each do |repository| %>
+    <li><%= repository.name %></li>
+    <li><%= link_to 'ver detalhes', repository_path(repository) %></li>
+  <% end %>
+</ul>
